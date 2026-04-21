@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antoine Dufour — Business Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161e;
+    --accent: #4f9cf9;
+    --accent2: #e8f4ff;
+    --text: #e8e8f0;
+    --text2: #9898b0;
+    --border: rgba(255,255,255,0.07);
+    --glow: rgba(79,156,249,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .nav-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #000 !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    font-weight: 600 !important;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    transition: all 0.3s;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(79,156,249,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(79,156,249,0.04) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 24px;
+    padding: 6px 14px;
+    border: 1px solid rgba(79,156,249,0.3);
+    border-radius: 2px;
+  }
+
+  .hero-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 800;
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+
+  .hero-name span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .hero-tagline {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--text2);
+    font-weight: 300;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+
+  .hero-tagline em {
+    font-family: 'Playfair Display', serif;
+    color: var(--text);
+    font-style: italic;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--text2);
+  }
+
+  .badge.accent { background: rgba(79,156,249,0.1); border-color: rgba(79,156,249,0.3); color: var(--accent); }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 14px 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary { background: var(--accent); color: #000; }
+  .btn-primary:hover { background: #72b3ff; transform: translateY(-2px); }
+
+  .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+    transform-origin: bottom;
+  }
+
+  .stat-card:hover::before { transform: scaleY(1); }
+  .stat-card:hover { border-color: rgba(79,156,249,0.2); transform: translateX(4px); }
+
+  .stat-icon { font-size: 28px; flex-shrink: 0; }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text2);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  .stat-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.5px;
+  }
+
+  /* SECTION BASE */
+  section {
+    padding: 100px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 60px;
+    letter-spacing: -0.5px;
+  }
+
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* STORY */
+  .story-section {
+    background: var(--bg2);
+    padding: 100px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,156,249,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .story-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .story-quote {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    position: sticky;
+    top: 120px;
+  }
+
+  .story-text p {
+    font-size: 17px;
+    color: var(--text2);
+    margin-bottom: 24px;
+    line-height: 1.8;
+  }
+
+  .story-text p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .story-text p em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 2px; }
+
+  .exp-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .exp-item:hover { border-color: rgba(79,156,249,0.2); }
+
+  .exp-header {
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .exp-emoji { font-size: 32px; flex-shrink: 0; }
+
+  .exp-meta { flex: 1; }
+
+  .exp-company {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .exp-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text);
+  }
+
+  .exp-period {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 4px;
+  }
+
+  .exp-toggle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text2);
+    font-size: 18px;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+
+  .exp-item.open .exp-toggle {
+    transform: rotate(45deg);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .exp-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .exp-item.open .exp-body { max-height: 1000px; }
+
+  .exp-content {
+    padding: 0 32px 32px;
+    border-top: 1px solid var(--border);
+    padding-top: 28px;
+  }
+
+  .exp-intro {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom: 24px;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .exp-blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .exp-block {
+    background: var(--bg3);
+    border-radius: 4px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .exp-block-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .exp-block p {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  .edu-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .edu-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .edu-card:hover::after, .edu-card.open::after { transform: scaleX(1); }
+  .edu-card:hover, .edu-card.open { border-color: rgba(79,156,249,0.2); }
+
+  .edu-flag { font-size: 28px; margin-bottom: 16px; }
+
+  .edu-school {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .edu-degree {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .edu-period {
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 16px;
+  }
+
+  .edu-story {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .edu-card.open .edu-story { max-height: 600px; }
+
+  .edu-story-text {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .edu-hint {
+    font-size: 11px;
+    color: var(--text2);
+    opacity: 0.6;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* SKILLS */
+  .skills-section {
+    background: var(--bg2);
+    padding: 100px 40px;
+  }
+
+  .skills-inner { max-width: 1200px; margin: 0 auto; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 60px;
+  }
+
+  .skill-group {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+  }
+
+  .skill-group-title {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    transition: all 0.2s;
+  }
+
+  .skill-tag:hover { background: rgba(79,156,249,0.1); border-color: rgba(79,156,249,0.3); color: var(--accent); }
+
+  /* LANGUAGES */
+  .lang-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .lang-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .lang-flag { font-size: 24px; }
+
+  .lang-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .lang-level {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  /* INTERESTS */
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .interest-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .interest-card:hover {
+    border-color: rgba(79,156,249,0.3);
+    transform: translateY(-4px);
+  }
+
+  .interest-icon { font-size: 36px; margin-bottom: 12px; }
+
+  .interest-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .interest-detail {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--bg2);
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(79,156,249,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contact-inner { position: relative; max-width: 700px; margin: 0 auto; }
+
+  .contact-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 6vw, 70px);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+
+  .contact-sub {
+    font-size: 16px;
+    color: var(--text2);
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .contact-link span { font-size: 16px; }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .footer-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text2);
+    opacity: 0.5;
+  }
+
+  /* ARTISTIC SECTION */
+  :root {
+    --art-bg: #1a1812;
+    --art-bg2: #211f17;
+    --art-accent: #c9a96e;
+    --art-accent2: #e8d5b0;
+    --art-text: #e8e0d0;
+    --art-text2: #9e9580;
+    --art-border: rgba(201,169,110,0.12);
+  }
+
+  .art-section {
+    background: var(--art-bg);
+    padding: 100px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .art-section::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .art-section::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .art-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .art-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--art-accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .art-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--art-text);
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .art-intro {
+    font-size: 16px;
+    color: var(--art-text2);
+    max-width: 720px;
+    margin-bottom: 60px;
+    line-height: 1.8;
+  }
+
+  .art-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .art-card {
+    background: var(--art-bg2);
+    border: 1px solid var(--art-border);
+    border-radius: 4px;
+    padding: 36px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .art-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--art-accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .art-card:hover::before { opacity: 1; }
+  .art-card:hover { border-color: rgba(201,169,110,0.25); }
+
+  .art-card-icon { font-size: 36px; margin-bottom: 20px; }
+
+  .art-card-tag {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--art-accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .art-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--art-text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .art-card-text {
+    font-size: 14px;
+    color: var(--art-text2);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .art-card-text strong {
+    color: var(--art-accent2);
+    font-weight: 500;
+  }
+
+  .art-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .art-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 2px;
+    background: rgba(201,169,110,0.08);
+    border: 1px solid rgba(201,169,110,0.2);
+    color: var(--art-accent);
+  }
+
+  @media (max-width: 768px) {
+    .art-section { padding: 72px 24px; }
+    .art-grid { grid-template-columns: 1fr; }
+  }
+
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* MOBILE NAV MENU */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10,10,15,0.98);
+    z-index: 99;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    backdrop-filter: blur(20px);
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:hover { color: var(--accent); }
+
+  .mobile-close {
+    position: absolute;
+    top: 24px;
+    right: 40px;
+    font-size: 32px;
+    cursor: pointer;
+    color: var(--text2);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero { padding: 100px 24px 60px; }
+    .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .hero-right { display: none; }
+
+    section { padding: 72px 24px; }
+
+    .story-section { padding: 72px 24px; }
+    .story-inner { grid-template-columns: 1fr; gap: 40px; }
+    .story-quote { position: static; font-size: 36px; }
+
+    .skills-section { padding: 72px 24px; }
+
+    .exp-header { padding: 20px 20px; }
+    .exp-content { padding: 20px; padding-top: 20px; }
+    .exp-blocks { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; gap: 8px; padding: 24px; }
+    footer .footer-copy { text-align: center; }
+
+    .contact-section { padding: 72px 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-name { font-size: 48px; }
+    .hero-badges { gap: 8px; }
+    .badge { font-size: 10px; padding: 5px 10px; }
+    .btn { padding: 12px 20px; font-size: 12px; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .lang-row { grid-template-columns: 1fr 1fr; }
+    .interests-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-name">Antoine Dufour</div>
+  <ul class="nav-links">
+    <li><a href="#story">Parcours</a></li>
+    <li><a href="#experience">Expériences</a></li>
+    <li><a href="#education">Formation</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-close" onclick="toggleMenu()">✕</div>
+  <a href="#story" onclick="toggleMenu()">Parcours</a>
+  <a href="#experience" onclick="toggleMenu()">Expériences</a>
+  <a href="#education" onclick="toggleMenu()">Formation</a>
+  <a href="#skills" onclick="toggleMenu()">Compétences</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" style="max-width:100%; padding-top:120px;">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-tag">📍 Paris, France</div>
+      <h1 class="hero-name">
+        Antoine<br><span>Dufour</span>
+      </h1>
+      <p class="hero-tagline">
+        Business Developer — Cycle · Outdoor · Marine<br>
+        <em>Deux mondes. Une logique.</em>
+      </p>
+      <div class="hero-badges">
+        <span class="badge accent">Field Sales & Sales Ops</span>
+        <span class="badge">Contract Management</span>
+        <span class="badge">Quadrilingue</span>
+        <span class="badge">3 Semestres à l'étranger</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Me contacter</a>
+        <a href="#experience" class="btn btn-secondary">Voir le parcours</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-card reveal reveal-delay-1">
+        <div class="stat-icon">🚴</div>
+        <div>
+          <div class="stat-label">Poste actuel</div>
+          <div class="stat-value">Business Developer — Sena Technologies</div>
+        </div>
+      </div>
+      <div class="stat-card reveal reveal-delay-2">
+        <div class="stat-icon">✈️</div>
+        <div>
+          <div class="stat-label">Expérience précédente</div>
+          <div class="stat-value">Customer Program Manager — Airbus FHS</div>
+        </div>
+      </div>
+      <div class="stat-card reveal reveal-delay-3">
+        <div class="stat-icon">🌍</div>
+        <div>
+          <div class="stat-label">International</div>
+          <div class="stat-value">Irlande · Finlande · Espagne · Madrid (3 ans)</div>
+        </div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-icon">🏆</div>
+        <div>
+          <div class="stat-label">Langues</div>
+          <div class="stat-value">FR · EN (TOEIC 940) · ES · IT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- STORY -->
+<div class="story-section" id="story">
+  <div class="story-inner">
+    <div class="story-quote reveal">
+      Deux<br>mondes.<br><span style="color:var(--text2)">Une</span><br>logique.
+    </div>
+    <div class="story-text reveal">
+      <p>Tout a commencé dans <strong>l'aéronautique</strong> — un secteur où on n'a pas le droit à l'erreur. Pendant 2 ans, j'ai appris à piloter des contrats complexes de bout en bout : mise en service, performance opérationnelle, suivi financier, revues clients. Des outils comme SAP et Skywise. Des interlocuteurs exigeants. <em>Une rigueur qui devient un réflexe.</em></p>
+      <p>Aujourd'hui, j'applique cette même rigueur à un terrain que je connais <strong>de l'intérieur : le sport</strong>. Business Developer sur les marchés Cycle, Outdoor et Marine, je développe des réseaux revendeurs B2B, forme des équipes en magasin, anime des salons et structure la performance commerciale — pricing, KPIs, suivi financier.</p>
+      <p>Triathlète et golfeur, <em>je parle la même langue que mes clients.</em> Ancien gestionnaire de contrats industriels, je sais ce que « performance » veut dire. Et après 3 ans à Madrid, 1 semestre à Dublin, 1 à Jyväskylä et un double diplôme à Santander — <strong>je suis à l'aise partout.</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- EXPERIENCES -->
+<section id="experience">
+  <div class="section-label">Expériences professionnelles</div>
+  <h2 class="section-title reveal">Le terrain</h2>
+
+  <div class="exp-list">
+
+    <!-- SENA -->
+    <div class="exp-item reveal" onclick="toggleExp(this)">
+      <div class="exp-header">
+        <div class="exp-emoji">🚴</div>
+        <div class="exp-meta">
+          <div class="exp-company">Sena Technologies</div>
+          <div class="exp-title">Business Developer — Cycle · Outdoor · Marine</div>
+          <div class="exp-period">2026 — En poste · Paris</div>
+        </div>
+        <div class="exp-toggle">+</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-content">
+          <p class="exp-intro">Développement et gestion d'un portefeuille revendeurs B2B sur les marchés Cycle, Outdoor et Marine — dans des univers que je pratique moi-même.</p>
+          <div class="exp-blocks">
+            <div class="exp-block">
+              <div class="exp-block-title">📌 Business Development & Field Sales</div>
+              <p>Prospection et ouverture de nouveaux comptes revendeurs (cycle, outdoor, accastillage). Gestion et fidélisation d'un portefeuille clients B2B sur secteur défini. Sell-in, réassort et optimisation du merchandising (PLV, présentoirs, démos).</p>
+            </div>
+            <div class="exp-block">
+              <div class="exp-block-title">📌 Sales Operations & Pricing</div>
+              <p>Élaboration et suivi des offres commerciales (devis, conditions de vente). Création et maintenance des grilles tarifaires. Reporting mensuel et trimestriel, suivi des KPIs, relance des impayés.</p>
+            </div>
+            <div class="exp-block">
+              <div class="exp-block-title">📌 Product Training & Évangélisation</div>
+              <p>Formation des équipes de vente en magasin sur les technologies connectées Sena (Intercom, Mesh). Animation de Tech Talks et support technique terrain.</p>
+            </div>
+            <div class="exp-block">
+              <div class="exp-block-title">🌍 Événements & Salons</div>
+              <p>Participation aux salons professionnels et événements grand public (Roc d'Azur et autres). Animation de stand, démonstration produit et acquisition de nouveaux contacts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AIRBUS -->
+    <div class="exp-item reveal" onclick="toggleExp(this)">
+      <div class="exp-header">
+        <div class="exp-emoji">✈️</div>
+        <div class="exp-meta">
+          <div class="exp-company">Airbus FHS — Flight Hour Services</div>
+          <div class="exp-title">Customer Program Manager — Alternance</div>
+          <div class="exp-period">Sept. 2023 — Sept. 2025 · Toulouse</div>
+        </div>
+        <div class="exp-toggle">+</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-content">
+          <p class="exp-intro">Gestion de contrats de services aéronautiques au sein d'un environnement industriel exigeant, en interface directe avec les clients compagnies aériennes mondiales.</p>
+          <div class="exp-blocks">
+            <div class="exp-block">
+              <div class="exp-block-title">📌 Contract Management & Performance</div>
+              <p>Pilotage de contrats de bout en bout : négociation, mise en service, suivi opérationnel et financier. Conversion du modèle économique en modèle industriel et financier. Préservation des marges.</p>
+            </div>
+            <div class="exp-block">
+              <div class="exp-block-title">📌 Customer Success & Reporting</div>
+              <p>Participation active aux customer performance reviews avec les compagnies aériennes. Élaboration de reportings transverses et suivi des KPIs. Actions correctives dans une logique d'amélioration continue.</p>
+            </div>
+            <div class="exp-block">
+              <div class="exp-block-title">📌 Supply Chain Monitoring</div>
+              <p>Supervision de la chaîne d'approvisionnement pour garantir la disponibilité des pièces et la conformité des délais contractuels.</p>
+            </div>
+            <div class="exp-block">
+              <div class="exp-block-title">📌 Data & Outils</div>
+              <p>Utilisation quotidienne de SAP, Skywise et solutions analytiques dans un environnement data-driven. Formation académique en IA et Data Visualisation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IKEA -->
+    <div class="exp-item reveal" onclick="toggleExp(this)">
+      <div class="exp-header">
+        <div class="exp-emoji">🛋️</div>
+        <div class="exp-meta">
+          <div class="exp-company">IKEA</div>
+          <div class="exp-title">Conseiller Vendeur — Dressing & Literie</div>
+          <div class="exp-period">Mai — Août 2021 · Toulouse · Stage</div>
+        </div>
+        <div class="exp-toggle">+</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-content">
+          <p class="exp-intro">Leader mondial de l'ameublement — premier contact avec la vente terrain, le conseil client et le merchandising en environnement à fort trafic.</p>
+          <div class="exp-blocks">
+            <div class="exp-block">
+              <div class="exp-block-title">📌 Conseil & Expérience Client</div>
+              <p>Recommandations produits adaptées aux besoins, upselling et cross-selling dans un environnement retail à fort volume.</p>
+            </div>
+            <div class="exp-block">
+              <div class="exp-block-title">📌 Merchandising & Relation Client</div>
+              <p>Optimisation de l'implantation produit, fidélisation clientèle par l'écoute active et le conseil personnalisé. Production de supports de communication et participation aux campagnes de vente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Formation</div>
+  <h2 class="section-title reveal">Le monde comme salle de classe</h2>
+
+  <div class="edu-grid">
+
+    <div class="edu-card reveal" onclick="toggleEdu(this)">
+      <div class="edu-flag">🇫🇷</div>
+      <div class="edu-school">ICD Business School — Toulouse</div>
+      <div class="edu-degree">Programme Grande École — Grade de Master</div>
+      <div class="edu-period">2020 — 2025 · Bac+5 · RNCP Niveau 7</div>
+      <div class="edu-hint">👆 Cliquer pour en savoir plus</div>
+      <div class="edu-story">
+        <div class="edu-story-text">
+          Choisir l'ICD, c'était choisir une école à taille humaine, tournée vers le monde. Pas une grande école anonyme — mais un endroit où l'humain, l'entrepreneuriat et l'ouverture culturelle sont au cœur de la pédagogie.<br><br>
+          <strong>Spécialisation :</strong> Commerce Responsable & Expérience Client<br>
+          <strong>Mineure :</strong> IA & Data Visualisation<br>
+          <strong>Alternance</strong> en années 4 & 5
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-card reveal reveal-delay-1" onclick="toggleEdu(this)">
+      <div class="edu-flag">🇪🇸</div>
+      <div class="edu-school">CESINE × London Metropolitan University</div>
+      <div class="edu-degree">Double Diplôme — Sport Management</div>
+      <div class="edu-period">Sept. 2022 — Juin 2023 · Santander</div>
+      <div class="edu-hint">👆 Cliquer pour en savoir plus</div>
+      <div class="edu-story">
+        <div class="edu-story-text">
+          J'avais 12 ans quand mes parents se sont installés à Madrid. Trois ans à apprendre une langue, une culture, une façon d'être. À 15 ans, retour en France — mais l'Espagne ne m'a jamais vraiment quitté.<br><br>
+          Pendant le Covid, j'ai découvert le golf. Un sport de patience et de mental — joué seul, dans le silence. Index 24 en poche, j'ai compris que certains sports se jouent contre soi-même.<br><br>
+          Choisir Santander : retrouver l'Espagne que j'aime, dans un cadre réunissant Golf, Surf & Voile.<br><br>
+          <strong>Diplôme britannique validé par London Metropolitan University.</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-card reveal reveal-delay-2" onclick="toggleEdu(this)">
+      <div class="edu-flag">🇫🇮</div>
+      <div class="edu-school">JAMK University of Applied Sciences</div>
+      <div class="edu-degree">Semestre International</div>
+      <div class="edu-period">Janv. — Juin 2022 · Jyväskylä</div>
+      <div class="edu-hint">👆 Cliquer pour en savoir plus</div>
+      <div class="edu-story">
+        <div class="edu-story-text">
+          La Finlande, je la connaissais avant de la visiter. J'ai grandi avec le hockey sur glace — plus de 10 ans de pratique, mon tout premier sport. Celui qui m'a appris la discipline, le collectif et la résilience.<br><br>
+          Et le hockey, c'est aussi la Finlande : un pays qui vit et respire ce sport. Choisir Jyväskylä, c'était aller à la source.<br><br>
+          <strong>Cours 100% en anglais — 20+ nationalités.</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-card reveal reveal-delay-3" onclick="toggleEdu(this)">
+      <div class="edu-flag">🇮🇪</div>
+      <div class="edu-school">Dublin Business School</div>
+      <div class="edu-degree">Semestre International</div>
+      <div class="edu-period">Janv. — Avril 2021 · Dublin</div>
+      <div class="edu-hint">👆 Cliquer pour en savoir plus</div>
+      <div class="edu-story">
+        <div class="edu-story-text">
+          Dublin. Janvier 2021. Un mois pour tout. Un mois pour découvrir la ville, intégrer une nouvelle école, tisser des liens. Puis le Covid a tout arrêté.<br><br>
+          J'aurais pu le vivre comme une déception. J'ai choisi d'en faire une leçon. Travailler à distance en anglais, avec des équipes internationales, sans proximité physique — ça forge une autonomie que peu de semestres classiques enseignent.<br><br>
+          <em>Parfois les meilleures leçons viennent des plans qui ne se passent pas comme prévu.</em>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS & LANGUAGES -->
+<div class="skills-section" id="skills">
+  <div class="skills-inner">
+    <div class="section-label">Compétences</div>
+    <h2 class="section-title reveal">Boîte à outils</h2>
+
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">🎯 Business Development</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Field Sales</span>
+          <span class="skill-tag">B2B Account Mgmt</span>
+          <span class="skill-tag">Prospection</span>
+          <span class="skill-tag">Sell-in</span>
+          <span class="skill-tag">Fidélisation</span>
+          <span class="skill-tag">Merchandising</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-delay-1">
+        <div class="skill-group-title">📊 Sales Operations</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Pricing</span>
+          <span class="skill-tag">KPI Tracking</span>
+          <span class="skill-tag">Reporting</span>
+          <span class="skill-tag">Devis & Offres</span>
+          <span class="skill-tag">Suivi financier</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-delay-2">
+        <div class="skill-group-title">📋 Contract & Performance</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Contract Management</span>
+          <span class="skill-tag">Customer Success</span>
+          <span class="skill-tag">Supply Chain</span>
+          <span class="skill-tag">Performance Reviews</span>
+          <span class="skill-tag">P&L</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-delay-3">
+        <div class="skill-group-title">🛠️ Outils & Data</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SAP</span>
+          <span class="skill-tag">Skywise</span>
+          <span class="skill-tag">Pack Office</span>
+          <span class="skill-tag">Google Suite</span>
+          <span class="skill-tag">Data Visualisation</span>
+          <span class="skill-tag">IA (mineur)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:60px;">Langues</div>
+    <div class="lang-row reveal">
+      <div class="lang-card">
+        <div class="lang-flag">🇫🇷</div>
+        <div>
+          <div class="lang-name">Français</div>
+          <div class="lang-level">Langue maternelle</div>
+        </div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇬🇧</div>
+        <div>
+          <div class="lang-name">Anglais</div>
+          <div class="lang-level">Bilingue — TOEIC 940</div>
+        </div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇪🇸</div>
+        <div>
+          <div class="lang-name">Espagnol</div>
+          <div class="lang-level">Bilingue — Institut Cervantès</div>
+        </div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇮🇹</div>
+        <div>
+          <div class="lang-name">Italien</div>
+          <div class="lang-level">Notions avancées</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- INTERESTS -->
+<section>
+  <div class="section-label">Intérêts & Sports</div>
+  <h2 class="section-title reveal">Je parle la même langue que mes clients</h2>
+
+  <div class="interests-grid">
+    <div class="interest-card reveal">
+      <div class="interest-icon">🏊</div>
+      <div class="interest-name">Triathlon</div>
+      <div class="interest-detail">Natation · Vélo · Course — La discipline comme mode de vie. Projet : <strong style="color:var(--accent)">Ironman d'ici 2028.</strong></div>
+    </div>
+    <div class="interest-card reveal reveal-delay-1">
+      <div class="interest-icon">🏃</div>
+      <div class="interest-name">Marathon</div>
+      <div class="interest-detail">Ma distance de prédilection — Sur route, le marathon est celui qui me ressemble le plus.</div>
+    </div>
+    <div class="interest-card reveal reveal-delay-2">
+      <div class="interest-icon">⛳</div>
+      <div class="interest-name">Golf</div>
+      <div class="interest-detail">Index 24 — Découvert pendant le Covid. Un sport contre soi-même.</div>
+    </div>
+    <div class="interest-card reveal reveal-delay-3">
+      <div class="interest-icon">🏒</div>
+      <div class="interest-name">Hockey sur glace</div>
+      <div class="interest-detail">10+ ans de pratique — Mon tout premier sport. Collectif & résilience.</div>
+    </div>
+    <div class="interest-card reveal">
+      <div class="interest-icon">🏀</div>
+      <div class="interest-name">Basketball</div>
+      <div class="interest-detail">Joueur & Assistant Coach — TLB Toulouse (2016–2020)</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ARTISTIC SECTION -->
+<div class="art-section">
+  <div class="art-inner">
+    <div class="art-label">Projets personnels & artistiques</div>
+    <h2 class="art-title">L'œil derrière le métier</h2>
+    <p class="art-intro">En dehors du terrain commercial, j'entretiens un rapport au monde à travers deux projets artistiques qui nourrissent mon regard — la photographie de sport outdoor et la création de visites immersives.</p>
+
+    <div class="art-grid">
+
+      <!-- PHOTO -->
+      <div class="art-card">
+        <div class="art-card-icon">📷</div>
+        <div class="art-card-tag">Photographie sportive</div>
+        <h3 class="art-card-title">Le mouvement figé</h3>
+        <p class="art-card-text">
+          Passionné de photographie de sport en extérieur — triathlon, cyclisme, running. Je construis actuellement un kit compact et discret autour d'un <strong>Fujifilm X-M5</strong>, pensé pour les courses et événements outdoor : léger, réactif, dans une approche reportage.<br><br>
+          Un regard documentaire sur l'effort — capturer l'instant qui ne dure pas, dans des environnements que je connais de l'intérieur en tant qu'athlète.
+        </p>
+        <div class="art-tags">
+          <span class="art-tag">Fujifilm X-M5</span>
+          <span class="art-tag">Sports outdoor</span>
+          <span class="art-tag">Reportage</span>
+          <span class="art-tag">Triathlon · Cyclisme</span>
+        </div>
+      </div>
+
+      <!-- VIRTUAL TOUR -->
+      <div class="art-card">
+        <div class="art-card-icon">🏛️</div>
+        <div class="art-card-tag">Visite virtuelle & Immobilier</div>
+        <h3 class="art-card-title">L'espace raconté</h3>
+        <p class="art-card-text">
+          Tout a commencé par un projet associatif en première année d'études — la création d'une <strong>visite virtuelle interactive pour le Musée du Vieux Toulouse</strong> : navigation immersive dans les salles, accès aux œuvres en grand format haute qualité, descriptifs intégrés.<br><br>
+          Ce projet m'a révélé un intérêt profond pour la narration spatiale. Depuis, je m'intéresse à l'application de ces techniques dans l'<strong>immobilier</strong> — permettre à un acquéreur de vivre un espace avant de le visiter.
+        </p>
+        <div class="art-tags">
+          <span class="art-tag">Visite 360°</span>
+          <span class="art-tag">Muséographie</span>
+          <span class="art-tag">Immobilier</span>
+          <span class="art-tag">UX immersive</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="contact-title reveal">Échangeons.</h2>
+    <p class="contact-sub reveal">
+      Vous cherchez un profil qui sait vendre, structurer et développer ?<br>
+      Toujours curieux des belles opportunités à venir.
+    </p>
+    <div class="contact-links reveal">
+      <a href="mailto:antoine.ad.dufour@gmail.com" class="contact-link">
+        <span>📧</span> antoine.ad.dufour@gmail.com
+      </a>
+      <a href="tel:+33658356662" class="contact-link">
+        <span>📱</span> +33 6 58 35 66 62
+      </a>
+      <a href="https://www.linkedin.com/in/antoine-dufour-2327643b3" target="_blank" class="contact-link">
+        <span>💼</span> LinkedIn
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-name">Antoine Dufour</div>
+  <div class="footer-copy">Business Developer · Paris · 2026</div>
+</footer>
+
+<script>
+  // Toggle experience
+  function toggleExp(el) {
+    el.classList.toggle('open');
+  }
+
+  // Toggle education
+  function toggleEdu(el) {
+    el.classList.toggle('open');
+  }
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Auto-open first experience
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const firstExp = document.querySelector('.exp-item');
+      if (firstExp) firstExp.classList.add('open');
+    }, 800);
+  });
+</script>
+</body>
+</html>
